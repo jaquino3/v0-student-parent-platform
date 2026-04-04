@@ -48,13 +48,17 @@ const translations: Record<string, Record<Language, string>> = {
   "grade.title": { en: "Select Your Grade Level", es: "Selecciona Tu Nivel Escolar" },
   "grade.subtitle": { en: "We'll personalize your learning experience", es: "Personalizaremos tu experiencia de aprendizaje" },
   "grade.elementary": { en: "Elementary", es: "Primaria" },
-  "grade.3rd": { en: "3rd Grade", es: "3er Grado" },
-  "grade.5th": { en: "5th Grade", es: "5to Grado" },
-  "grade.8th": { en: "8th Grade", es: "8vo Grado" },
-  "grade.middle": { en: "Middle School", es: "Secundaria" },
+  "grade.3rd": { en: "Grade 3", es: "Grado 3" },
+  "grade.5th": { en: "Grade 5", es: "Grado 5" },
+  "grade.8th": { en: "Grade 8", es: "Grado 8" },
+  "grade.middle": { en: "Middle School", es: "Escuela Secundaria" },
   "grade.high": { en: "High School", es: "Preparatoria" },
   "grade.college": { en: "College", es: "Universidad" },
   "grade.continue": { en: "Continue", es: "Continuar" },
+
+  //Name Input
+  "name.title": { en:"What\'s your name?", es: "¿Cual es tu nombre?"},
+  "name.subtitle": {en:"We\'ll use this to personalize your experience", es:"Usaremos esto para personalizar tu experiencia"},
   
   // Dashboard
   "dashboard.welcome": { en: "Welcome back", es: "Bienvenido de nuevo" },

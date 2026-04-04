@@ -24,6 +24,10 @@ type Step = "role" | "grade" | "name";
 const gradeOptions = [
   { value: "3rd", category: "elementary" },
   { value: "5th", category: "elementary" },
+  { value: "8th", category: "elementary" },
+  { value: "middle", category: "middle" },
+  { value: "high", category: "high" },
+  { value: "college", category: "college" },
 ] as const;
 
 export default function OnboardingPage() {
@@ -258,9 +262,11 @@ export default function OnboardingPage() {
         {step === "name" && (
           <div className="w-full space-y-6 text-center">
             <div>
-              <h1 className="text-3xl font-bold">What&apos;s your name?</h1>
+              <h1 className="text-3xl font-bold">
+                {t("name.title")}
+              </h1>
               <p className="mt-2 text-muted-foreground">
-                We&apos;ll use this to personalize your experience
+                {t("name.subtitle")}
               </p>
             </div>
 
