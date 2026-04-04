@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -190,6 +191,11 @@ export default function CalendarPage() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{t("calendar.addEvent")}</DialogTitle>
+              <DialogDescription>
+                {language === "en" 
+                  ? "Add a new event to your calendar" 
+                  : "Agrega un nuevo evento a tu calendario"}
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
