@@ -16,7 +16,6 @@ import {
   Star,
   CheckCircle2,
   BookOpenCheck,
-  Sparkles,
 } from "lucide-react";
 
 const stories = [
@@ -137,31 +136,6 @@ export default function LearningHub() {
             : "Elige una materia y comienza a aprender"}
         </p>
       </div>
-
-      {/* AI Lesson Generator Banner */}
-      <Card className="border-primary/30 bg-gradient-to-r from-primary/10 to-accent/10">
-        <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-            <Sparkles className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-lg font-semibold">
-              {language === "en" ? "AI-Powered Learning" : "Aprendizaje con IA"}
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              {language === "en"
-                ? "Get personalized lessons created just for you based on your level and interests"
-                : "Obtén lecciones personalizadas creadas especialmente para ti según tu nivel e intereses"}
-            </p>
-          </div>
-          <Button asChild size="lg" className="gap-2">
-            <Link href="/student/learning/ai-lesson">
-              <Sparkles className="h-4 w-4" />
-              {language === "en" ? "Generate Lesson" : "Generar Lección"}
-            </Link>
-          </Button>
-        </CardContent>
-      </Card>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:grid-cols-none">
