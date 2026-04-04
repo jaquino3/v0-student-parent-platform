@@ -1,4 +1,5 @@
 import { generateText, Output } from "ai";
+import { xai } from "@ai-sdk/xai";
 import { z } from "zod";
 
 // Schema for the generated lesson
@@ -81,7 +82,9 @@ Make sure:
 Create an engaging, educational lesson that adapts to this student's level and needs.`;
 
     const { output } = await generateText({
-      model: "openai/gpt-4o-mini",
+      model: xai("grok-4", {
+        apiKey: process.env.XAI_API_KEY,
+      }),
       output: Output.object({
         schema: lessonSchema,
       }),
