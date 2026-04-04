@@ -91,29 +91,11 @@ export default function LandingPage() {
                 {t("landing.getStarted")}
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                {t("landing.learnMore")}
-              </Button>
             </div>
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-8">
-            {[
-              { value: "10K+", label: "Students" },
-              { value: "500+", label: "Lessons" },
-              { value: "98%", label: "Satisfaction" },
-              { value: "24/7", label: "Support" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-border bg-card p-6 text-center"
-              >
-                <p className="text-3xl font-bold text-primary">{stat.value}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </section>
 
