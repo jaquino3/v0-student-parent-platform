@@ -155,75 +155,7 @@ export default function StudentDashboard() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Today's Schedule */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              {t("dashboard.todayPlan")}
-            </CardTitle>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/student/calendar">
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {todaySchedule.map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted">
-                    <Clock className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="truncate text-sm font-medium">{item.title}</p>
-                    <p className="text-xs text-muted-foreground">{item.time}</p>
-                  </div>
-                  <div
-                    className={`h-2 w-2 rounded-full ${
-                      item.type === "class"
-                        ? "bg-[var(--calendar-class)]"
-                        : item.type === "homework"
-                        ? "bg-[var(--calendar-homework)]"
-                        : "bg-[var(--calendar-extra)]"
-                    }`}
-                  />
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
       </div>
-
-      {/* Recent Activity */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("dashboard.recentActivity")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {recentActivity.map((activity, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 rounded-lg border border-border p-3"
-              >
-                <div
-                  className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${
-                    activity.subject === "Math" ? "bg-[var(--math)]" : "bg-[var(--ela)]"
-                  }`}
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">{activity.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {activity.subject} • {activity.date}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
