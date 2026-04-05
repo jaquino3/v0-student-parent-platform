@@ -13,6 +13,7 @@ import {
   Globe,
   ArrowRight,
   Sparkles,
+  Calendar,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -38,7 +39,7 @@ export default function LandingPage() {
       descKey: "landing.feature2.desc",
     },
     {
-      icon: Users,
+      icon: Calendar,
       titleKey: "landing.feature3.title",
       descKey: "landing.feature3.desc",
     },
