@@ -136,7 +136,7 @@ export default function LandingPage() {
               <span className="font-semibold">EduPath</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              &copy; 2026 EduPath. All rights reserved.
+              &copy; 2026 EduPath. All rights reserved
             </p>
           </div>
         </div>
