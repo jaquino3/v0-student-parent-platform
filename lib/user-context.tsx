@@ -24,6 +24,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [gradeLevel, setGradeLevelState] = useState<GradeLevel>(null);
   const [studentName, setStudentNameState] = useState<string>("Alex");
   const [isOnboarded, setIsOnboarded] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     const savedRole = localStorage.getItem("userRole") as Role;
@@ -35,35 +36,38 @@ export function UserProvider({ children }: { children: ReactNode }) {
     if (savedGrade) setGradeLevelState(savedGrade);
     if (savedName) setStudentNameState(savedName);
     if (savedOnboarded === "true") setIsOnboarded(true);
+    setIsHydrated(true);
   }, []);
 
-  const setRole = (role: Role) => {
-    setRoleState(role);
-    if (role) localStorage.setItem("userRole", role);
+  const setRole = (newRole: Role) => {
+    setRoleState(newRole);
+    if (isHydrated && newRole) localStorage.setItem("userRole", newRole);
   };
 
   const setGradeLevel = (grade: GradeLevel) => {
     setGradeLevelState(grade);
-    if (grade) localStorage.setItem("gradeLevel", grade);
+    if (isHydrated && grade) localStorage.setItem("gradeLevel", grade);
   };
 
   const setStudentName = (name: string) => {
     setStudentNameState(name);
-    localStorage.setItem("studentName", name);
+    if (isHydrated) localStorage.setItem("studentName", name);
   };
 
   const completeOnboarding = () => {
     setIsOnboarded(true);
-    localStorage.setItem("isOnboarded", "true");
+    if (isHydrated) localStorage.setItem("isOnboarded", "true");
   };
 
   const resetOnboarding = () => {
     setIsOnboarded(false);
     setRoleState(null);
     setGradeLevelState(null);
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("gradeLevel");
-    localStorage.removeItem("isOnboarded");
+    if (isHydrated) {
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("gradeLevel");
+      localStorage.removeItem("isOnboarded");
+    }
   };
 
   return (
