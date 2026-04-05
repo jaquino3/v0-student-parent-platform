@@ -24,8 +24,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [gradeLevel, setGradeLevelState] = useState<GradeLevel>(null);
   const [studentName, setStudentNameState] = useState<string>("Alex");
   const [isOnboarded, setIsOnboarded] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const savedRole = localStorage.getItem("userRole") as Role;
     const savedGrade = localStorage.getItem("gradeLevel") as GradeLevel;
     const savedName = localStorage.getItem("studentName");
@@ -39,17 +41,17 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const setRole = (role: Role) => {
     setRoleState(role);
-    if (role) localStorage.setItem("userRole", role);
+    if (mounted && role) localStorage.setItem("userRole", role);
   };
 
   const setGradeLevel = (grade: GradeLevel) => {
     setGradeLevelState(grade);
-    if (grade) localStorage.setItem("gradeLevel", grade);
+    if (mounted && grade) localStorage.setItem("gradeLevel", grade);
   };
 
   const setStudentName = (name: string) => {
     setStudentNameState(name);
-    localStorage.setItem("studentName", name);
+    if (mounted) localStorage.setItem("studentName", name);
   };
 
   const completeOnboarding = () => {
