@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
-import { useEvents, EventCategory } from "@/lib/events-context";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +35,16 @@ import {
   Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+type EventCategory = "class" | "work" | "homework" | "extracurricular";
+
+interface CalendarEvent {
+  id: string;
+  title: string;
+  time: string;
+  category: EventCategory;
+  day: number;
+}
 
 const categoryConfig: Record<EventCategory, { icon: typeof Clock; label: string; labelEs: string; colorClass: string }> = {
   class: {
@@ -75,10 +84,25 @@ const monthsEs = [
   "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 ];
 
+const initialEvents: CalendarEvent[] = [
+  { id: "1", title: "Math Class", time: "9:00 AM", category: "class", day: 1 },
+  { id: "2", title: "ELA Reading", time: "11:00 AM", category: "class", day: 1 },
+  { id: "3", title: "Homework: Fractions", time: "3:00 PM", category: "homework", day: 1 },
+  { id: "4", title: "Soccer Practice", time: "5:00 PM", category: "extracurricular", day: 1 },
+  { id: "5", title: "Math Class", time: "9:00 AM", category: "class", day: 2 },
+  { id: "6", title: "Piano Lesson", time: "4:00 PM", category: "extracurricular", day: 2 },
+  { id: "7", title: "Part-time Job", time: "5:00 PM", category: "work", day: 3 },
+  { id: "8", title: "Science Project", time: "7:00 PM", category: "homework", day: 3 },
+  { id: "9", title: "ELA Class", time: "10:00 AM", category: "class", day: 4 },
+  { id: "10", title: "Math Quiz Review", time: "2:00 PM", category: "homework", day: 4 },
+  { id: "11", title: "Soccer Game", time: "3:00 PM", category: "extracurricular", day: 5 },
+  { id: "12", title: "Part-time Job", time: "10:00 AM", category: "work", day: 6 },
+];
+
 export default function CalendarPage() {
   const { t, language } = useLanguage();
-  const { events, addEvent, getEventsForDate } = useEvents();
   const [currentDate, setCurrentDate] = useState(new Date(2026, 3, 4)); // April 4, 2026
+  const [events, setEvents] = useState<CalendarEvent[]>(initialEvents);
   const [selectedDay, setSelectedDay] = useState<number | null>(4);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({
@@ -118,19 +142,19 @@ export default function CalendarPage() {
   };
 
   const getEventsForDay = (day: number) => {
-    return getEventsForDate(day, currentMonth, currentYear);
+    return events.filter((e) => e.day === day);
   };
 
-  const handleAddEvent = () => {
+  const addEvent = () => {
     if (newEvent.title && newEvent.time && selectedDay) {
-      addEvent({
+      const event: CalendarEvent = {
+        id: Date.now().toString(),
         title: newEvent.title,
         time: newEvent.time,
         category: newEvent.category,
         day: selectedDay,
-        month: currentMonth,
-        year: currentYear,
-      });
+      };
+      setEvents([...events, event]);
       setNewEvent({ title: "", time: "", category: "class" });
       setDialogOpen(false);
     }
@@ -169,8 +193,8 @@ export default function CalendarPage() {
               <DialogTitle>{t("calendar.addEvent")}</DialogTitle>
               <DialogDescription>
                 {language === "en" 
-                  ? `Add a new event to ${months[currentMonth]} ${selectedDay}, ${currentYear}` 
-                  : `Agregar un evento para el ${selectedDay} de ${monthsEs[currentMonth]}, ${currentYear}`}
+                  ? "Add a new event to your calendar" 
+                  : "Agrega un nuevo evento a tu calendario"}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
@@ -221,7 +245,7 @@ export default function CalendarPage() {
               <DialogClose asChild>
                 <Button variant="outline">{t("common.cancel")}</Button>
               </DialogClose>
-              <Button onClick={handleAddEvent} disabled={!newEvent.title || !newEvent.time}>
+              <Button onClick={addEvent} disabled={!newEvent.title || !newEvent.time}>
                 {t("common.save")}
               </Button>
             </DialogFooter>
@@ -355,42 +379,36 @@ export default function CalendarPage() {
               </div>
             ) : (
               <div className="space-y-3">
-                {selectedDayEvents.map((event) => {
-                  const config = categoryConfig[event.category];
-                  const Icon = config.icon;
-                  // Format time from 24h to 12h
-                  const formatTime = (time: string) => {
-                    const [hours, minutes] = time.split(":");
-                    const h = parseInt(hours);
-                    const ampm = h >= 12 ? "PM" : "AM";
-                    const h12 = h % 12 || 12;
-                    return `${h12}:${minutes} ${ampm}`;
-                  };
-                  return (
-                    <div
-                      key={event.id}
-                      className={cn(
-                        "flex items-center gap-3 rounded-lg border p-3 transition-colors",
-                        "border-border hover:bg-accent/30"
-                      )}
-                    >
+                {selectedDayEvents
+                  .sort((a, b) => a.time.localeCompare(b.time))
+                  .map((event) => {
+                    const config = categoryConfig[event.category];
+                    const Icon = config.icon;
+                    return (
                       <div
+                        key={event.id}
                         className={cn(
-                          "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
-                          config.colorClass
+                          "flex items-center gap-3 rounded-lg border p-3 transition-colors",
+                          "border-border hover:bg-accent/30"
                         )}
                       >
-                        <Icon className="h-5 w-5" />
+                        <div
+                          className={cn(
+                            "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
+                            config.colorClass
+                          )}
+                        >
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{event.title}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {event.time} • {language === "en" ? config.label : config.labelEs}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium truncate">{event.title}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {formatTime(event.time)} • {language === "en" ? config.label : config.labelEs}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             )}
           </CardContent>
