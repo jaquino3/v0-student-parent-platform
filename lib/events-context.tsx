@@ -37,25 +37,28 @@ const EventsContext = createContext<EventsContextType | undefined>(undefined);
 
 export function EventsProvider({ children }: { children: ReactNode }) {
   const [events, setEvents] = useState<CalendarEvent[]>(initialEvents);
-  const isInitialized = useRef(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
+  // Load from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem("calendar_events");
     if (saved) {
       try {
-        setEvents(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setEvents(parsed);
       } catch {
         // Keep initial events on parse error
       }
     }
-    isInitialized.current = true;
+    setIsHydrated(true);
   }, []);
 
+  // Save to localStorage only after hydration and when events change
   useEffect(() => {
-    if (isInitialized.current) {
+    if (isHydrated) {
       localStorage.setItem("calendar_events", JSON.stringify(events));
     }
-  }, [events]);
+  }, [events, isHydrated]);
 
   const addEvent = (event: Omit<CalendarEvent, "id">) => {
     const newEvent: CalendarEvent = {

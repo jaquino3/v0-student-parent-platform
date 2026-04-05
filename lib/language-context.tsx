@@ -136,19 +136,19 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
-  const [mounted, setMounted] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("language") as Language;
     if (saved && (saved === "en" || saved === "es")) {
       setLanguageState(saved);
     }
+    setIsHydrated(true);
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (mounted) localStorage.setItem("language", lang);
+    if (isHydrated) localStorage.setItem("language", lang);
   };
 
   const t = (key: string): string => {
