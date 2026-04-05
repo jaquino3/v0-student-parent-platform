@@ -24,10 +24,6 @@ type Step = "role" | "grade" | "name";
 const gradeOptions = [
   { value: "3rd", category: "elementary" },
   { value: "5th", category: "elementary" },
-  { value: "8th", category: "elementary" },
-  { value: "middle", category: "middle" },
-  { value: "high", category: "high" },
-  { value: "college", category: "college" },
 ] as const;
 
 export default function OnboardingPage() {
