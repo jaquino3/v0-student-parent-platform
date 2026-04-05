@@ -151,28 +151,6 @@ export default function LearningHub() {
 
         {/* ELA Tab */}
         <TabsContent value="ela" className="mt-6">
-          <Card className="mb-6 border-[var(--ela)]/20 bg-[var(--ela)]/5">
-            <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--ela)] text-[var(--ela-foreground)]">
-                <BookOpenCheck className="h-8 w-8" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold">{t("learning.stories")}</h2>
-                <p className="text-sm text-muted-foreground">
-                  {language === "en"
-                    ? "Bilingual stories with translation support, audio, and comprehension questions"
-                    : "Historias bilingües con soporte de traducción, audio y preguntas de comprensión"}
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[var(--ela)]">2/4</p>
-                  <p className="text-xs text-muted-foreground">{t("learning.completed")}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           <div className="grid gap-4 sm:grid-cols-2">
             {stories.map((story) => (
               <Card key={story.id} className="overflow-hidden">
@@ -242,28 +220,6 @@ export default function LearningHub() {
 
         {/* Math Tab */}
         <TabsContent value="math" className="mt-6">
-          <Card className="mb-6 border-[var(--math)]/20 bg-[var(--math)]/5">
-            <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--math)] text-[var(--math-foreground)]">
-                <Calculator className="h-8 w-8" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold">{t("learning.math")}</h2>
-                <p className="text-sm text-muted-foreground">
-                  {language === "en"
-                    ? "Interactive lessons with explanations, examples, and practice problems"
-                    : "Lecciones interactivas con explicaciones, ejemplos y problemas de práctica"}
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[var(--math)]">9/28</p>
-                  <p className="text-xs text-muted-foreground">{t("progress.lessonsCompleted")}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {mathTopics.map((topic) => (
               <Card key={topic.id}>

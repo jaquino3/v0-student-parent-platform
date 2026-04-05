@@ -20,16 +20,21 @@ const translations: Record<string, Record<Language, string>> = {
   "nav.logout": { en: "Log Out", es: "Cerrar Sesión" },
   
   // Landing Page
+  "landing.platDesc": {en: "Bilingual Learning Platform", es: "Plataforma de aprendizaje bilingüe"},
   "landing.title": { en: "Empowering Students & Families", es: "Empoderando Estudiantes y Familias" },
   "landing.subtitle": { en: "Bilingual learning platform for academic success", es: "Plataforma de aprendizaje bilingüe para el éxito académico" },
   "landing.getStarted": { en: "Get Started", es: "Comenzar" },
-  "landing.learnMore": { en: "Learn More", es: "Saber Más" },
+  "landing.learnMoreSubtitle": {en: "Everything you need to succeed", es: "Todo lo que necesitas para triunfar"},
+  "landing.learnMoreSubtitleDesc" : {en: "Our platform provides comprehensive tools for students and parents alike.", es:"Nuestra plataforma ofrece herramientas completas tanto para los alumnos como para los padres."},
   "landing.feature1.title": { en: "Personalized Learning", es: "Aprendizaje Personalizado" },
   "landing.feature1.desc": { en: "Adaptive content based on grade level and progress", es: "Contenido adaptativo basado en nivel y progreso" },
   "landing.feature2.title": { en: "Bilingual Support", es: "Soporte Bilingüe" },
   "landing.feature2.desc": { en: "Full English and Spanish language support", es: "Soporte completo en inglés y español" },
   "landing.feature3.title": { en: "Parent Involvement", es: "Participación de Padres" },
   "landing.feature3.desc": { en: "Track progress and support learning at home", es: "Seguimiento del progreso y apoyo desde casa" },
+  "landing.copyright": {en: "\u00A9 2026 EduPath. All rights reserved.", es:"\u00A9 2026 EduPath. Todos los derechos reservados."},
+  
+
   
   // Role Selection
   "role.title": { en: "Who are you?", es: "¿Quién eres?" },
@@ -43,13 +48,17 @@ const translations: Record<string, Record<Language, string>> = {
   "grade.title": { en: "Select Your Grade Level", es: "Selecciona Tu Nivel Escolar" },
   "grade.subtitle": { en: "We'll personalize your learning experience", es: "Personalizaremos tu experiencia de aprendizaje" },
   "grade.elementary": { en: "Elementary", es: "Primaria" },
-  "grade.3rd": { en: "3rd Grade", es: "3er Grado" },
-  "grade.5th": { en: "5th Grade", es: "5to Grado" },
-  "grade.8th": { en: "8th Grade", es: "8vo Grado" },
-  "grade.middle": { en: "Middle School", es: "Secundaria" },
+  "grade.3rd": { en: "Grade 3", es: "Grado 3" },
+  "grade.5th": { en: "Grade 5", es: "Grado 5" },
+  "grade.8th": { en: "Grade 8", es: "Grado 8" },
+  "grade.middle": { en: "Middle School", es: "Escuela Secundaria" },
   "grade.high": { en: "High School", es: "Preparatoria" },
   "grade.college": { en: "College", es: "Universidad" },
   "grade.continue": { en: "Continue", es: "Continuar" },
+
+  //Name Input
+  "name.title": { en:"What\'s your name?", es: "¿Cual es tu nombre?"},
+  "name.subtitle": {en:"We\'ll use this to personalize your experience", es:"Usaremos esto para personalizar tu experiencia"},
   
   // Dashboard
   "dashboard.welcome": { en: "Welcome back", es: "Bienvenido de nuevo" },

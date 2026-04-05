@@ -6,6 +6,7 @@ import { useUser } from "@/lib/user-context";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { LanguageSelector } from "@/components/language-selector";
 import {
   BookOpen,
   Calculator,
@@ -42,6 +43,7 @@ export default function StudentDashboard() {
           <h1 className="text-2xl font-bold sm:text-3xl">
             {t("dashboard.welcome")}, {studentName}!
           </h1>
+          <LanguageSelector/>
           <p className="mt-1 text-muted-foreground">
             {gradeLevel && t(`grade.${gradeLevel}`)} - {t("dashboard.continueLearning")}
           </p>
@@ -101,6 +103,7 @@ export default function StudentDashboard() {
             </div>
           </CardContent>
         </Card>
+        
       </div>
 
       {/* Main Content Grid */}

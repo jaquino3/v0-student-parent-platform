@@ -29,23 +29,6 @@ export default function LandingPage() {
     }
   }, [isOnboarded, role, router]);
 
-  const features = [
-    {
-      icon: Sparkles,
-      titleKey: "landing.feature1.title",
-      descKey: "landing.feature1.desc",
-    },
-    {
-      icon: Globe,
-      titleKey: "landing.feature2.title",
-      descKey: "landing.feature2.desc",
-    },
-    {
-      icon: Users,
-      titleKey: "landing.feature3.title",
-      descKey: "landing.feature3.desc",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,7 +54,9 @@ export default function LandingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <BookOpen className="h-4 w-4" />
-              <span>Bilingual Learning Platform</span>
+              <span>
+                {t("landing.platDesc")}
+              </span>
             </div>
 
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
@@ -91,29 +76,12 @@ export default function LandingPage() {
                 {t("landing.getStarted")}
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                {t("landing.learnMore")}
-              </Button>
+              
             </div>
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-8">
-            {[
-              { value: "10K+", label: "Students" },
-              { value: "500+", label: "Lessons" },
-              { value: "98%", label: "Satisfaction" },
-              { value: "24/7", label: "Support" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-border bg-card p-6 text-center"
-              >
-                <p className="text-3xl font-bold text-primary">{stat.value}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </section>
 
@@ -122,92 +90,14 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Everything you need to succeed
+              {t("landing.learnMoreSubtitle")}
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Our platform provides comprehensive tools for students and parents alike.
+              {t("landing.learnMoreSubtitleDesc")}
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <Card
-                key={feature.titleKey}
-                className="group relative overflow-hidden border-border/50 bg-card transition-shadow hover:shadow-lg"
-              >
-                <CardContent className="p-6">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <feature.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-lg font-semibold">{t(feature.titleKey)}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{t(feature.descKey)}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Learning Paths Section */}
-      <section className="py-20 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Two paths, one goal: Academic excellence
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                Whether you&apos;re a student ready to learn or a parent wanting to support,
-                we have the tools you need.
-              </p>
-
-              <div className="mt-8 space-y-4">
-                <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--math)] text-[var(--math-foreground)]">
-                    <Target className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">For Students</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Interactive lessons in ELA and Math, progress tracking, and time management tools.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                    <TrendingUp className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">For Parents</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Monitor progress, receive guidance tips, and stay informed with notifications.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 p-8">
-                <div className="flex h-full flex-col items-center justify-center gap-6 rounded-2xl bg-card p-8 shadow-xl">
-                  <GraduationCap className="h-20 w-20 text-primary" />
-                  <div className="text-center">
-                    <p className="text-2xl font-bold">Ready to start?</p>
-                    <p className="mt-2 text-muted-foreground">Join thousands of learners today</p>
-                  </div>
-                  <Button
-                    size="lg"
-                    className="gap-2"
-                    onClick={() => router.push("/onboarding")}
-                  >
-                    {t("landing.getStarted")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+        
         </div>
       </section>
 
@@ -220,7 +110,7 @@ export default function LandingPage() {
               <span className="font-semibold">EduPath</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              &copy; 2026 EduPath. All rights reserved.
+              {t("landing.copyright")}
             </p>
           </div>
         </div>

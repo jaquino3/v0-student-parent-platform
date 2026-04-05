@@ -1,5 +1,6 @@
 "use client";
 
+import { LanguageSelector } from "@/components/language-selector";
 import { useLanguage } from "@/lib/language-context";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -14,13 +15,13 @@ import {
 } from "lucide-react";
 
 const weeklyActivity = [
-  { day: "Mon", ela: 45, math: 30 },
-  { day: "Tue", ela: 30, math: 60 },
-  { day: "Wed", ela: 60, math: 45 },
-  { day: "Thu", ela: 15, math: 30 },
-  { day: "Fri", ela: 45, math: 60 },
-  { day: "Sat", ela: 30, math: 15 },
-  { day: "Sun", ela: 0, math: 0 },
+  { day: "Mon", dayEs: "Lun", ela: 45, math: 30 },
+  { day: "Tue", dayEs: "Mar", ela: 30, math: 60 },
+  { day: "Wed", dayEs: "Mier", ela: 60, math: 45 },
+  { day: "Thu", dayEs: "Juev", ela: 15, math: 30 },
+  { day: "Fri", dayEs: "Vier", ela: 45, math: 60 },
+  { day: "Sat", dayEs: "Sab", ela: 30, math: 15 },
+  { day: "Sun", dayEs: "Dom", ela: 0, math: 0 },
 ];
 
 const achievements = [
@@ -39,6 +40,7 @@ export default function ProgressPage() {
 
   return (
     <div className="space-y-6">
+      <LanguageSelector/>
       <div>
         <h1 className="text-2xl font-bold sm:text-3xl">{t("progress.title")}</h1>
         <p className="mt-1 text-muted-foreground">
@@ -192,7 +194,7 @@ export default function ProgressPage() {
                     style={{ height: `${(day.math / maxMinutes) * 80}px` }}
                   />
                 </div>
-                <span className="text-xs text-muted-foreground">{day.day}</span>
+                <span className="text-xs text-muted-foreground">{language === "en" ? day.day: day.dayEs}</span>
               </div>
             ))}
           </div>
